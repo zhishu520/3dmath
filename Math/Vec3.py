@@ -26,6 +26,12 @@ class Vec3(object):
     def __truediv__(self, other: float):
         return self * (1.0 / other)
 
+    def __matmul__(self, other):
+        return Vec3(self.y*other.z - self.z*other.y,
+                    self.z*other.x - self.x*other.z,
+                    self.x*other.y - self.y*other.x)
+
+
     def __str__(self):
         return "[ {}, {}, {} ]".format(self.x, self.y, self.z)
 
