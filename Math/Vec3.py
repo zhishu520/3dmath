@@ -14,6 +14,9 @@ class Vec3(object):
     def __sub__(self, other):
         return Vec3(self.x-other.x, self.y-other.y, self.z-other.z)
 
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y and self.z == other.z
+
     def __neg__(self):
         return Vec3(-self.x, -self.y, -self.z)
 
