@@ -1,5 +1,6 @@
 import math
 
+
 class Vec3(object):
 
     def __init__(self, other):
@@ -34,7 +35,6 @@ class Vec3(object):
                     self.z*other.x - self.x*other.z,
                     self.x*other.y - self.y*other.x)
 
-
     def __str__(self):
         return "[ {}, {}, {} ]".format(self.x, self.y, self.z)
 
@@ -56,5 +56,6 @@ class Vec3(object):
             scalar = 1.0 / math.sqrt(magSq)
             return Vec3(self.x * scalar, self.y * scalar, self.z * scalar)
         return Vec3.ZERO
+
 
 Vec3.ZERO = Vec3(0, 0, 0)

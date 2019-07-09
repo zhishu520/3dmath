@@ -1,6 +1,7 @@
 
 
 from Math.Vec3 import Vec3
+from Math.Matrix3x3 import Matrix3x3
 
 
 if __name__ == '__main__':
@@ -9,3 +10,8 @@ if __name__ == '__main__':
     print(a*b)
     print(a*2.0)
     print(b*2.0)
+
+
+    m = Matrix3x3([123])
+
+
