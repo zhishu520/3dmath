@@ -22,10 +22,11 @@ class Vec3(object):
         return Vec3(-self.x, -self.y, -self.z)
 
     def __mul__(self, other):
-        if type(other) == type(self):
+        if type(other) == Vec3:
             return self.x * other.x + self.y * other.y + self.z * other.z;
-        else:
+        elif type(other) == float:
             return Vec3(self.x * other, self.y * other, self.z * other)
+        elif
 
     def __truediv__(self, other: float):
         return self * (1.0 / other)

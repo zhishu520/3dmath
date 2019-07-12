@@ -1,4 +1,5 @@
 
+import math
 from Math.Vec3 import Vec3
 
 class Matrix3x3(object):
@@ -17,6 +18,14 @@ class Matrix3x3(object):
             self.m21, self.m22, self.m23 = 0, 0, 0
             self.m31, self.m32, self.m33 = 0, 0, 0
 
+    def __str__(self):
+
+        return "{:.1f}, {:.1f}, {:.1f}\n{:.1f}, {:.1f}, {:.1f}\n{:.1f}, {:.1f}, {:.1f}\n".format(
+            self.m11, self.m12, self.m13,
+            self.m21, self.m22, self.m23,
+            self.m31, self.m32, self.m33,
+        )
+
     def __mul__(self, other):
         if type(other) is Matrix3x3:
             r = Matrix3x3()
@@ -32,8 +41,10 @@ class Matrix3x3(object):
             r.a31 = self.m31 * other.m11 + self.m32 * other.m21 + self.m33 * other.m31
             r.a32 = self.m31 * other.m12 + self.m32 * other.m22 + self.m33 * other.m32
             r.a33 = self.m31 * other.m13 + self.m32 * other.m23 + self.m33 * other.m33
+            return r
 
         elif type(other) is Vec3:
+            print("2222222222")
             # 列向量
             return Vec3(
                 other.x * self.m11 + other.y * self.m12 + other.z * self.m13,
@@ -56,8 +67,10 @@ class Matrix3x3(object):
             r.a31 = other.m31 * self.m11 + other.m32 * self.m21 + other.m33 * self.m31
             r.a32 = other.m31 * self.m12 + other.m32 * self.m22 + other.m33 * self.m32
             r.a33 = other.m31 * self.m13 + other.m32 * self.m23 + other.m33 * self.m33
+            return r
 
         elif type(other) is Vec3:
+            print("111111111")
             # 行向量
             return Vec3(
                 other.x * self.m11 + other.y * self.m12 + other.z * self.m13,
@@ -65,6 +78,36 @@ class Matrix3x3(object):
                 other.x * self.m31 + other.y * self.m32 + other.z * self.m33,
             )
 
+    """
+        axis:
+            1 x轴
+            2 y轴
+            3 z轴
+    """
+
+    @staticmethod
+    def getRotateMatrix(axis: int, theta: float):
+
+        assert axis>=1 and axis<=3
+
+        s = math.sin(theta)
+        c = math.cos(theta)
+
+        arr = [[
+                [1,  0, 0],
+                [0,  c, s],
+                [0, -s, c],
+            ],[
+                [c, 0, -s],
+                [0, 1,  0],
+                [s, 0,  c],
+            ],[
+                [ c, s, 0],
+                [-s, c, 0],
+                [ 0, 0, 1],
+            ],]
+
+        return Matrix3x3(arr[axis - 1])
 
 
 
